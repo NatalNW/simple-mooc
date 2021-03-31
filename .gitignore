@@ -1,2 +1,4 @@
 venv/
 simplemooc/simplemooc/__pycache__
+
+simplemooc\db.sqlite3
