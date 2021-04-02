@@ -2,4 +2,6 @@ venv/
 simplemooc/simplemooc/__pycache__
 simplemooc/simplemooc/core/__pycache__
 simplemooc/simplemooc/core/migrations
+simplemooc/simplemooc/courses/migrations
+simplemooc/simplemooc/courses/__pycache__
 simplemooc/db.sqlite3
