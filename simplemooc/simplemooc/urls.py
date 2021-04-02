@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from simplemooc.core import views
+from django.urls.conf import include
+from simplemooc.core import urls
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('contact/', views.contact, name='contact'),
+    path('', include((urls, 'core'), namespace='core')),
     path('admin/', admin.site.urls),
 ]
