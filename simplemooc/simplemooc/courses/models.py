@@ -11,6 +11,10 @@ class Course(models.Model):
     created_at = models.DateTimeField('Created At', auto_now_add=True)
     updated_at = models.DateTimeField('Updated At', auto_now=True)
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('courses:details', args=[str(self.slug)])
+
     def __str__(self):
         return self.name
 
