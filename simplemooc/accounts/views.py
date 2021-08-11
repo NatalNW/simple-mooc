@@ -1,17 +1,17 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth.forms import UserCreationForm
 from django.conf import settings
+from simplemooc.accounts.forms import RegisterForm
 
 def register(req):
     template_name = 'register.html'
 
     if req.method == 'POST':
-        form = UserCreationForm(req.POST)
+        form = RegisterForm(req.POST)
         if form.is_valid():
             form.save()
             return redirect(settings.LOGIN_URL)
     else:
-        form = UserCreationForm()
+        form = RegisterForm()
 
     context = {
         'form': form
