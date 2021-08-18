@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.conf import settings
-from simplemooc.accounts.forms import RegisterForm
+from accounts.forms import RegisterForm
+
 
 def register(req):
     template_name = 'register.html'
@@ -18,4 +19,3 @@ def register(req):
     }
 
     return render(req, template_name, context)
-

@@ -40,10 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'simplemooc.core',
-    'simplemooc.accounts',
-    'simplemooc.courses',
+    'core',
+    'accounts',
+    'courses',
 ]
 
 MIDDLEWARE = [
