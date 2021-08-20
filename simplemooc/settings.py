@@ -90,8 +90,9 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 LOGIN_URL = 'accounts:login'
-LOGIN_REDIRECT_URL = '/'
 LOGOUT_URL = 'accounts:logout'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'core:home'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

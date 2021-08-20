@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.conf import settings
+from django.contrib.auth import authenticate, login
 from accounts.forms import RegisterForm
 
 
@@ -9,8 +10,10 @@ def register(req):
     if req.method == 'POST':
         form = RegisterForm(req.POST)
         if form.is_valid():
-            form.save()
-            return redirect(settings.LOGIN_URL)
+            user = form.save()
+            user = authenticate(username=user.username, password=form.cleaned_data['password1'])
+            login(req, user)
+            return redirect('core:home')
     else:
         form = RegisterForm()
 
