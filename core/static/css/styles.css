@@ -76,8 +76,8 @@ body .primary-button {
     padding: 1em;
     font-size: 80%;
     width: 100%;
-    position: absolute;
-    bottom: 0;
+    /* position: absolute; */
+    /* bottom: 0; */
 }
 ul.errorlist {
     margin: 0;
