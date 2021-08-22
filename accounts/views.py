@@ -1,13 +1,32 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
-from accounts.forms import RegisterForm
+from accounts.forms import RegisterForm, EditAccountForm
 
 
 @login_required
 def dashboard(req):
-    template_name = 'profile.html'
+    template_name = 'dashboard.html'
     return render(req, template_name)
+
+
+@login_required
+def edit(req):
+    template_name = 'edit-profile.html'
+    context = {}
+    
+    if req.method == 'POST':
+        form = EditAccountForm(req.POST, instance=req.user)
+        if form.is_valid():
+            form.save()
+            form = EditAccountForm(instance=req.user)
+            context['success'] = True
+    else:
+        form = EditAccountForm(instance=req.user)
+
+    context['form'] = form
+
+    return render(req, template_name, context)
 
 
 def register(req):
