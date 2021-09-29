@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import PasswordChangeForm
 from accounts.forms import RegisterForm, EditAccountForm
 
 
@@ -26,6 +27,23 @@ def edit(req):
 
     context['form'] = form
 
+    return render(req, template_name, context)
+
+@login_required
+def edit_passwd(req):
+    template_name = 'edit-passwd.html'
+    context = {}
+
+    if req.method == 'POST':
+        form = PasswordChangeForm(data=req.POST, user=req.user)
+
+        if form.is_valid():
+            form.save()
+            context['success'] = True
+    else:
+        form = PasswordChangeForm(user=req.POST)
+    
+    context['form'] = form
     return render(req, template_name, context)
 
 
