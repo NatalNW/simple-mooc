@@ -2,13 +2,14 @@
 Simple Mooc is a web course provider (like [udemy](https://www.udemy.com/)) developed using Django Framework
 
 ## How to Run
+**This project uses [poetry](https://python-poetry.org/) as package manager.**
 
-execute the command below on the root project:
+Execute the commands below on the root project:
 
 ```
-λ virtualenv .venv
-λ pip install -r requirements.txt
-λ python manage.py runserver 0.0.0.0:8000 
+$ make install
+$ make migrate
+$ make runserver
 ```
 
 Open http://localhost:8000 to see the Simple Mooc
