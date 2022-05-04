@@ -1,8 +1,9 @@
-from django.shortcuts import redirect, render
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
-from accounts.forms import RegisterForm, EditAccountForm
+from django.shortcuts import redirect, render
+
+from accounts.forms import EditAccountForm, RegisterForm
 
 
 @login_required
@@ -15,7 +16,7 @@ def dashboard(req):
 def edit(req):
     template_name = 'edit-profile.html'
     context = {}
-    
+
     if req.method == 'POST':
         form = EditAccountForm(req.POST, instance=req.user)
         if form.is_valid():
@@ -28,6 +29,7 @@ def edit(req):
     context['form'] = form
 
     return render(req, template_name, context)
+
 
 @login_required
 def edit_passwd(req):
@@ -42,7 +44,7 @@ def edit_passwd(req):
             context['success'] = True
     else:
         form = PasswordChangeForm(user=req.POST)
-    
+
     context['form'] = form
     return render(req, template_name, context)
 
@@ -54,15 +56,14 @@ def register(req):
         form = RegisterForm(req.POST)
         if form.is_valid():
             user = form.save()
-            user = authenticate(username=user.username,
-                                password=form.cleaned_data['password1'])
+            user = authenticate(
+                username=user.username, password=form.cleaned_data['password1']
+            )
             login(req, user)
             return redirect('core:home')
     else:
         form = RegisterForm()
 
-    context = {
-        'form': form
-    }
+    context = {'form': form}
 
     return render(req, template_name, context)

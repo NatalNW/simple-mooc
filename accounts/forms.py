@@ -1,7 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
-
+from django.contrib.auth.forms import UserCreationForm
 
 User = get_user_model()
 
@@ -37,11 +36,11 @@ class RegisterForm(forms.ModelForm):
 
 
 class EditAccountForm(forms.ModelForm):
-
     def clean_email(self):
         email = self.cleaned_data['email']
-        queryset = User.objects.filter(
-            email=email).exclude(pk=self.instance.pk)
+        queryset = User.objects.filter(email=email).exclude(
+            pk=self.instance.pk
+        )
 
         if queryset.exists():
             raise forms.ValidationError('Email already being used!')

@@ -12,12 +12,18 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name='course',
-            options={'ordering': ['name'], 'verbose_name': 'Course', 'verbose_name_plural': 'Courses'},
+            options={
+                'ordering': ['name'],
+                'verbose_name': 'Course',
+                'verbose_name_plural': 'Courses',
+            },
         ),
         migrations.AddField(
             model_name='course',
             name='about',
-            field=models.TextField(blank=True, verbose_name='About the Course'),
+            field=models.TextField(
+                blank=True, verbose_name='About the Course'
+            ),
         ),
         migrations.AlterField(
             model_name='course',

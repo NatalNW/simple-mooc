@@ -1,5 +1,5 @@
-from django.conf import settings
 from django import forms
+from django.conf import settings
 
 from core.mail import send_mail_template
 
@@ -18,8 +18,5 @@ class ContactCourse(forms.Form):
         }
         template_name = 'courses/contact_email.html'
         send_mail_template(
-            subject,
-            template_name,
-            context,
-            [settings.CONTACT_EMAIL]
+            subject, template_name, context, [settings.CONTACT_EMAIL]
         )

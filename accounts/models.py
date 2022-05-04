@@ -1,17 +1,27 @@
-from django.db import models
-from django.core import validators
-from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin, UserManager)
 import re
+
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    PermissionsMixin,
+    UserManager,
+)
+from django.core import validators
+from django.db import models
+
 
 class User(AbstractBaseUser, PermissionsMixin):
 
     username = models.CharField(
-        'Username', max_length=30, unique=True,
-        validators=[validators.RegexValidator(
-            re.compile('^[\w.@+--]+$'),
-            'The username can only contain letters, digits or the following characters: @/./+/-/_',
-            'invalid'
-        )]
+        'Username',
+        max_length=30,
+        unique=True,
+        validators=[
+            validators.RegexValidator(
+                re.compile('^[\w.@+--]+$'),
+                'The username can only contain letters, digits or the following characters: @/./+/-/_',
+                'invalid',
+            )
+        ],
     )
     name = models.CharField('Name', max_length=150, blank=True)
     email = models.EmailField('E-mail', unique=True)
@@ -29,7 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.name or self.username
 
     def get_full_name(self):
-        #full_name = f'{self.first_name} {self.last_name}'
+        # full_name = f'{self.first_name} {self.last_name}'
         return str(self)
 
     def get_short_name(self):
